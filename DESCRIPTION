@@ -1,0 +1,10 @@
+Package: download.uspto.data
+Type: Package
+Title: Downloading patent data from the USPTO database
+Version: 0.1.0
+Author: Jacklien Maessen
+Maintainer: Jacklien Maessen <j.h.j.maessen@tilburguniversity.edu>
+Description: In this package you can find a function for Automatically downloading bibliographic or full text data from the USPTO database. The function allows you to specificy from which years you want to download patent data and to specify which type of data (Bibliographic or full text) you want to download.
+License: GPL-3
+LazyData: TRUE
+RoxygenNote: 5.0.1
