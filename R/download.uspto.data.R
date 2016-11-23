@@ -13,7 +13,7 @@
 #' @details When entering the sample, parentheses need to included; in example "2016". When the sample consists of multiple years specify the argument like this: "2015|2016|2017".
 #'
 #' The function makes use of a configuration file with a yaml extention. This configuration file needs to be stored in the home directory and needs to have this specific name: "intera.config.yml".
-#' The configuration file contains user specific paths to specific directories where the data are stored. The configuration file consists of keys and values. Each line of the configuration file contains "key: value". The key represents an object in R (which is the name of a directory), the value is the path to this directory.
+#' The configuration file contains user specific paths to specific directories where the data are stored. The configuration file consists of keys and values. Each line of the configuration file contains "key: value". The key represents an object in R (which is the name of a directory), the value is the path to this directory. The first line of the configuration file could for example look like this "Maindir: ~/intera-data"
 
 
 
@@ -42,15 +42,15 @@ download.uspto.data <- function(data.type = NA, file.type = NA, sample = NA) {
 
 
   ## Create directories
-  dir.create(config$maindir)                     # When the directories  are missing,
-  dir.create(config$subdir.bibl)
-  dir.create(config$subdir.full)
-  dir.create(config$bibl.ipgb)
-  dir.create(config$bibl.pgb)
-  dir.create(config$bibl.pba)
-  dir.create(config$full.pftaps)
-  dir.create(config$full.pg)
-  dir.create(config$full.ipg)
+  dir.create(config$maindir, F)                     # When the directories  are missing,
+  dir.create(config$subdir.bibl, F)
+  dir.create(config$subdir.full, F)
+  dir.create(config$bibl.ipgb, F)
+  dir.create(config$bibl.pgb, F)
+  dir.create(config$bibl.pba, F)
+  dir.create(config$full.pftaps, F)
+  dir.create(config$full.pg, F)
+  dir.create(config$full.ipg, F)
 
   ## Specifications
   uspto.index.html <- getURL("https://bulkdata.uspto.gov/")
@@ -207,6 +207,8 @@ download.uspto.data <- function(data.type = NA, file.type = NA, sample = NA) {
 
 
   for (i in zips.sample) {
+    print(i)
+    print(lenght(zips.sample) - match(i, zips.sample))
     tf <- tempfile()                                                    # Create a temporary file
     download.file(i, tf, mode = "wb")                                   # Download the zip into the temporary file
     unzip(tf, exdir = subDir)                                           # Unzip the content of the temporary file and
