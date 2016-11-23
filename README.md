@@ -25,11 +25,11 @@ To get more information about the function, how to use it and some extra help ->
 
 ## Below follows a description of the two parts of the database:
 
-Bibliographic data
-1976 to 1995 contains dat files
-1996 to 2000 is of the file type pba and contains text files
-2001 to 2004 is of the file type pgb and contains xml files and text files
-2005 to present is of the file type ipgb and contains xml files, text files, and an html link
+Bibliographic data  
+1976 to 1995 contains dat files  
+1996 to 2000 is of the file type pba and contains text files  
+2001 to 2004 is of the file type pgb and contains xml files and text files  
+2005 to present is of the file type ipgb and contains xml files, text files, and an html link  
 
 Full text data 
 1976 to 2001 is of the file type pftaps and contains text files
