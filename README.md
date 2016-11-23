@@ -1,7 +1,7 @@
 # download.uspto.data
-This repository contains the Rpackage "download.uspto.data" which provides a function called "download.uspto.data" to download patent data from the USPTO bulk data storage system.
+This repository contains the Rpackage "download.uspto.data" which provides a function called "download.uspto.data" to download patent data from the USPTO bulk data storage system (https://bulkdata.uspto.gov/). 
 
-The function "download.uspto.data" enables you to efficiently download biliographic and/or full text data from the USPTO data base. The function allows you to choose which type of data you want to download (bibliographic or full text), from which years you want to download data, and which types of files you would like to download. 
+The function "download.uspto.data" enables you to efficiently download biliographic and/or full text data from the USPTO data base. The function allows you to choose which type of data you want to download (bibliographic or full text), from which years you want to download data, and which types of files you would like to download.  
 
 Here follows the function description: 
 
@@ -18,4 +18,17 @@ Here follow instructions which are needed to install the package:
 
 To get more information about the function, how to use it and some extra help -> help("download.uspto.data")
 
+install_github('pack','github_username') function) 
 
+Below follows a description of the two parts of the database:
+
+Bibliographic data
+1976 to 1995 contains dat files
+1996 to 2000 is of the file type pba and contains text files
+2001 to 2004 is of the file type pgb and contains xml files and text files
+2005 to present is of the file type ipgb and contains xml files, text files, and an html link
+
+Full text data 
+1976 to 2001 is of the file type pftaps and contains text files
+2001 to 2004 is of the file type pg and contains sgm files and xml files
+2005 to 2016 is of the file type ipg and contains xml files
