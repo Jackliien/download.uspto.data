@@ -23,6 +23,6 @@ the data will be downloaded and stored in the corresponding folder.
 When entering the sample, parentheses need to included; in example "2016". When the sample consists of multiple years specify the argument like this: "2015|2016|2017".
 
 The function makes use of a configuration file with a yaml extention. This configuration file needs to be stored in the home directory and needs to have this specific name: "intera.config.yml".
-The configuration file contains user specific paths to specific directories where the data are stored. The configuration file consists of keys and values. Each line of the configuration file contains "key: value". The key represents an object in R (which is the name of a directory), the value is the path to this directory.
+The configuration file contains user specific paths to specific directories where the data are stored. The configuration file consists of keys and values. Each line of the configuration file contains "key: value". The key represents an object in R (which is the name of a directory), the value is the path to this directory. The first line of the configuration file could for example look like this "Maindir: ~/intera-data"
 }
 
