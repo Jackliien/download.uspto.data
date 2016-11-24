@@ -38,10 +38,10 @@ To get more information about the function, how to use it and some extra help ->
 
 ## Template for making a personal configuration file
 
-maindir:<specify path>  
-bibl.ipgb:   
-bibl.pgb:   
-bibl.pba:   
-full.pftaps:   
-full.pg:   
-full.ipg:   
+maindir:(specify path here)
+bibl.ipgb:(specify path here) 
+bibl.pgb:(specify path here)   
+bibl.pba:(specify path here)   
+full.pftaps:(specify path here)   
+full.pg:(specify path here)   
+full.ipg:(specify path here)   
