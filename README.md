@@ -38,7 +38,7 @@ To get more information about the function, how to use it and some extra help ->
 
 ## Template for making a personal configuration file
 
-maindir:  
+maindir:<specify path>  
 bibl.ipgb:   
 bibl.pgb:   
 bibl.pba:   
