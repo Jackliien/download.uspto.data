@@ -5,7 +5,7 @@ The function "download.uspto.data" enables you to efficiently download biliograp
 
 ## function description: 
 
-The function download.uspto.data downloads bibliographic or full text patent data from the USPTO database. Bibliographic data contains front page information from each patent that was issued by the uspto from 1976 until present. Full text data contains the full text of each patent grant issued weekly from 1976 to present. The function creates directories in your home directory which correspond to the data types and file types. Before downloading, the function will check whether the required data is already in the folder, if this is not the case, the data will be downloaded and stored in the corresponding folder.
+The function download.uspto.data downloads bibliographic or full text patent data from the USPTO database. Bibliographic data contains front page information of each patent that was issued by the uspto from 1976 until present. Full text data contains the full text of each patent grant issued weekly from 1976 to present. The function creates directories which correspond to the data types and file types. Before downloading, the function will check whether the required data is already in the corresponding directory. If this is not the case, the data will be downloaded and stored in the corresponding folder. During the downloading process the console prints the name of the file that is currently downloaded and the number of files that are left to download.  
 
 ## Instructions to install the package: 
 
@@ -35,3 +35,13 @@ To get more information about the function, how to use it and some extra help ->
 1976 to 2001 is of the file type pftaps and contains text files  
 2001 to 2004 is of the file type pg and contains sgm files and xml files  
 2005 to 2016 is of the file type ipg and contains xml files  
+
+## Template for making a personal configuration file
+
+maindir:(specify path here)  
+bibl.ipgb:(specify path here)   
+bibl.pgb:(specify path here)     
+bibl.pba:(specify path here)     
+full.pftaps:(specify path here)     
+full.pg:(specify path here)     
+full.ipg:(specify path here)     
