@@ -2,22 +2,26 @@
 #' download.uspto.data
 #'
 #' The function download.uspto.data downloads bibliographic or full text patent data from the USPTO database.
-#' Bibliographic data contains front page information from each patent that was issued by the uspto from 1976 until present. Full text data contains the full text of each patent grant issued weekly from 1976 to present.
-#' The function creates directories in your home directory which correspond to the data types and file types. Before downloading, the function will check whether the required data is allready in the folder, if this is not the case,
-#' the data will be downloaded and stored in the corresponding folder.
+#' Bibliographic data contains front page information of each patent that was issued by the uspto from 1976 until present. Full text data contains the full text of each patent grant issued weekly from 1976 to present.
+#' The function creates directories which correspond to the data types and file types. Before downloading, the function will check whether the required data is already in the corresponding directory. If this is not the case,
+#' the data will be downloaded and stored in the corresponding folder. During the downloading process the console prints the name of the file that is currently downloaded and the number of files that are left to download.
 #'
 #' @param data.type Specify the data type you want to download. For bibliographic the argument is "bibl". For full text data the argument is "full".
 #' @param file.type Specify the type of file you want to download. The arguments for bibliographic data are "ipgb", "pgb", and "pba". The arguments for Full text data are "pftaps", "pg", and "ipg".
 #' @param sample Specify the years from which you want to download the data. Note that you need to use "parentheses".
+#' @param config.file.path Specify the path to your configural file. The default option is the home directory.
+#' @param no.cofig If you wish to not make use of a configural file, set this parameter to TRUE. The function will create a directory named "intera-data" in your homedirectory, which contains subdirectories corresponding with the datatypes and filetypes.
 #' @export
 #' @details When entering the sample, parentheses need to included; in example "2016". When the sample consists of multiple years specify the argument like this: "2015|2016|2017".
 #'
-#' The function makes use of a configuration file with a yaml extention. This configuration file needs to be stored in the home directory and needs to have this specific name: "intera.config.yml".
-#' The configuration file contains user specific paths to specific directories where the data are stored. The configuration file consists of keys and values. Each line of the configuration file contains "key: value". The key represents an object in R (which is the name of a directory), the value is the path to this directory. The first line of the configuration file could for example look like this "Maindir: ~/intera-data"
+#' By default the function makes use of a configuration file with a yaml extention. As default, this configuration file needs to be stored in the home directory. If you have stored the configural file in another directory, you can specify the path to this directory in the argument "config.file.path". The configuration file needs to have this specific name: "intera.config.yml".
+#'
+#' The configuration file contains user specific paths to specific directories where the data are stored. The configuration file consists of keys and values. Each line of the configuration file contains "key: value". The key represents an object in R (which is the name of a directory), the value is the path to this directory. The template for making your personal configuration file can be found on: https://github.com/Jackliien/download.uspto.data/blob/master/README.md
+#'
+#'
 
 
-
-download.uspto.data <- function(data.type = NA, file.type = NA, sample = NA) {
+download.uspto.data <- function(data.type = NA, file.type = NA, sample = NA, config.file.path = "~/", no.config = F) {
 
   packages <- c("RCurl"
                 , "XML"
@@ -34,12 +38,21 @@ download.uspto.data <- function(data.type = NA, file.type = NA, sample = NA) {
       library(x, character.only = TRUE)}
   })
 
-
+  no.config = T
 
   ## Load configuration file
-  config.file.path <- path.expand(file.path("~", "intera.config.yml", fsep ="\\"))
-  config <- yaml.load_file("intera.config.yml")
-
+  if (no.config == F) setwd(config.file.path)
+  if (no.config == F) config <- yaml.load_file("intera.config.yml")
+  if(no.config == T) config <- list(
+    maindir = "~/intera-data/"
+    , subdir.bibl = "~/intera-data/bibliographic/"
+    , subdir.full = "~/intera-data/full.text"
+    , bibl.ipgb = "~/intera-data/bibliographic/ipgb"
+    , bibl.pgb = "~/intera-data/bibliographic/pgb"
+    , bibl.pba = "~/intera-data/bibliographic/pba"
+    , full.pftaps = "~/intera-data/full.text/pftaps"
+    , full.pg = "~/intera-data/full.text/pg"
+    , full.ipg = "~/intera-data/full.text/ipg")
 
   ## Create directories
   dir.create(config$maindir, F)                     # When the directories  are missing,
@@ -206,23 +219,23 @@ download.uspto.data <- function(data.type = NA, file.type = NA, sample = NA) {
 
 
 
-  for (i in zips.sample) {
+  for (i in zips.sample[1]) {
     print(i)
-    print(lenght(zips.sample) - match(i, zips.sample))
+    print(length(zips.sample) - match(i, zips.sample))
     tf <- tempfile()                                                    # Create a temporary file
     download.file(i, tf, mode = "wb")                                   # Download the zip into the temporary file
     unzip(tf, exdir = subDir)                                           # Unzip the content of the temporary file and
     file.remove(tf)                                                     # save the content in the sub directory.
-                                                                        # Select the files in the subDir that are .html and .txt (These need to be deleted since we're only interested in xml files)
+    # Select the files in the subDir that are .html and .txt (These need to be deleted since we're only interested in xml files)
     if(file.type == "ipgb") {id <- grep(".html|.txt", dir(config$bibl.ipgb))
-                             todelete <- dir(config$bibl.ipgb, full.names = TRUE)[id]}
+    todelete <- dir(config$bibl.ipgb, full.names = TRUE)[id]}
     if(file.type == "pgb")  {id <- grep(".txt", dir(config$bibl.pgb))
-                             todelete <- dir(config$bibl.pgb, full.names = TRUE)[id]}
+    todelete <- dir(config$bibl.pgb, full.names = TRUE)[id]}
     if(file.type == "pg")   {id <- grep(".sgm", dir(config$full.pg))
-                             todelete <- dir(config$full.pg, full.names = TRUE)[id]}
+    todelete <- dir(config$full.pg, full.names = TRUE)[id]}
     else id <- NA
-                         # Delete all the files in the subdir that are not .xml
+    # Delete all the files in the subdir that are not .xml
     unlink(todelete)
     setwd("~/")
-}
+  }
 }
