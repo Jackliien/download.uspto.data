@@ -35,3 +35,13 @@ To get more information about the function, how to use it and some extra help ->
 1976 to 2001 is of the file type pftaps and contains text files  
 2001 to 2004 is of the file type pg and contains sgm files and xml files  
 2005 to 2016 is of the file type ipg and contains xml files  
+
+## Template for making a personal configuration file
+
+maindir:  
+bibl.ipgb:   
+bibl.pgb:   
+bibl.pba:   
+full.pftaps:   
+full.pg:   
+full.ipg:   
