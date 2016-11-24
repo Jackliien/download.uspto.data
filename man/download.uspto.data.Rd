@@ -4,7 +4,8 @@
 \alias{download.uspto.data}
 \title{download.uspto.data}
 \usage{
-download.uspto.data(data.type = NA, file.type = NA, sample = NA)
+download.uspto.data(data.type = NA, file.type = NA, sample = NA,
+  config.file.path = "~/", no.config = F)
 }
 \arguments{
 \item{data.type}{Specify the data type you want to download. For bibliographic the argument is "bibl". For full text data the argument is "full".}
@@ -12,17 +13,22 @@ download.uspto.data(data.type = NA, file.type = NA, sample = NA)
 \item{file.type}{Specify the type of file you want to download. The arguments for bibliographic data are "ipgb", "pgb", and "pba". The arguments for Full text data are "pftaps", "pg", and "ipg".}
 
 \item{sample}{Specify the years from which you want to download the data. Note that you need to use "parentheses".}
+
+\item{config.file.path}{Specify the path to your configural file. The default option is the home directory.}
+
+\item{no.cofig}{If you wish to not make use of a configural file, set this parameter to TRUE. The function will create a directory named "intera-data" in your homedirectory, which contains subdirectories corresponding with the datatypes and filetypes.}
 }
 \description{
 The function download.uspto.data downloads bibliographic or full text patent data from the USPTO database.
-Bibliographic data contains front page information from each patent that was issued by the uspto from 1976 until present. Full text data contains the full text of each patent grant issued weekly from 1976 to present.
-The function creates directories in your home directory which correspond to the data types and file types. Before downloading, the function will check whether the required data is allready in the folder, if this is not the case,
-the data will be downloaded and stored in the corresponding folder.
+Bibliographic data contains front page information of each patent that was issued by the uspto from 1976 until present. Full text data contains the full text of each patent grant issued weekly from 1976 to present.
+The function creates directories which correspond to the data types and file types. Before downloading, the function will check whether the required data is already in the corresponding directory. If this is not the case,
+the data will be downloaded and stored in the corresponding folder. During the downloading process the console prints the name of the file that is currently downloaded and the number of files that are left to download.
 }
 \details{
 When entering the sample, parentheses need to included; in example "2016". When the sample consists of multiple years specify the argument like this: "2015|2016|2017".
 
-The function makes use of a configuration file with a yaml extention. This configuration file needs to be stored in the home directory and needs to have this specific name: "intera.config.yml".
-The configuration file contains user specific paths to specific directories where the data are stored. The configuration file consists of keys and values. Each line of the configuration file contains "key: value". The key represents an object in R (which is the name of a directory), the value is the path to this directory. The first line of the configuration file could for example look like this "Maindir: ~/intera-data"
+By default the function makes use of a configuration file with a yaml extention. As default, this configuration file needs to be stored in the home directory. If you have stored the configural file in another directory, you can specify the path to this directory in the argument "config.file.path". The configuration file needs to have this specific name: "intera.config.yml".
+
+The configuration file contains user specific paths to specific directories where the data are stored. The configuration file consists of keys and values. Each line of the configuration file contains "key: value". The key represents an object in R (which is the name of a directory), the value is the path to this directory. The template for making your personal configuration file can be found on: https://github.com/Jackliien/download.uspto.data/blob/master/README.md
 }
 
