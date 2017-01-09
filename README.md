@@ -1,7 +1,7 @@
 # download.uspto.data
 This repository contains the Rpackage "download.uspto.data" which provides a function called "download.uspto.data" to download patent data from the USPTO bulk data storage system (https://bulkdata.uspto.gov/). 
 
-The function "download.uspto.data" enables you to efficiently download biliographic and/or full text data from the USPTO data base. The function allows you to choose which type of data you want to download (bibliographic or full text), from which years you want to download data, and which types of files you would like to download.  
+The function "download.uspto.data" enables you to efficiently download bibliographic and/or full text data from the USPTO data base. The function allows you to choose which type of data you want to download (bibliographic or full text), from which years you want to download data, and which types of files you would like to download.  
 
 ## function description: 
 
